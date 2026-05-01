@@ -46,18 +46,33 @@
         <i data-lucide="moon" id="toggle-icon"></i>
     </button>
 
-    <nav class="fixed w-full z-50 py-5 px-8 flex justify-between items-center bg-white/90 dark:bg-[#000B18]/90 backdrop-blur-md border-b border-sky-200 dark:border-sky-900/30">
-        <div class="flex items-center space-x-2">
-            <i data-lucide="globe" class="text-sky-premium w-6 h-6"></i>
-            <span class="font-extrabold uppercase tracking-tighter text-2xl">WorldCup<span class="text-sky-premium">2026</span></span>
+        <nav class="fixed w-full z-50 py-4 px-8 flex justify-between items-center bg-white/95 dark:bg-[#000B18]/95 backdrop-blur-md border-b-2 border-sky-400/20 shadow-sm transition-all">
+        
+        <div class="flex items-center space-x-5">
+            <div class="w-12 h-12 overflow-hidden rounded-full bg-white flex items-center justify-center border-2 border-sky-100 shadow-inner">
+                <img src="logo.png" alt="World Cup 2026 Logo" class="w-full h-full object-contain p-1" onError="this.src='https://via.placeholder.com/48/00AEEF/FFFFFF?text=WC'">
+            </div>
+
+            <div class="flex flex-col justify-center">
+                <span class="text-[9px] uppercase tracking-[0.3em] font-bold text-sky-premium opacity-70">WORLDCUP2026 MANAGEMENT</span>
+                <span class="font-black uppercase tracking-tighter text-2xl leading-none text-navy-fix">
+                    WorldCup <span class="text-sky-premium">2026</span>
+                </span>
+                <span class="text-[9px] uppercase tracking-[0.5em] font-black opacity-40">Powered by BTC CORE</span>
+            </div>
         </div>
-        <div class="hidden md:flex space-x-8 font-bold text-sm uppercase tracking-widest">
+
+        <div class="hidden md:flex space-x-10 font-bold text-[12px] uppercase tracking-[0.2em]">
             <a href="#icons" class="hover:text-sky-premium transition-colors">Icons</a>
-            <a href="#tickets" class="hover:text-sky-premium transition-colors">Tickets</a>
-            <a href="#footer" class="hover:text-sky-premium transition-colors">Support</a>
+            <a href="#tickets" class="hover:text-sky-premium transition-colors">Ticketing</a>
+            <a href="#footer" class="hover:text-sky-premium transition-colors">Concierge</a>
         </div>
-        <a href="#tickets" class="bg-sky-premium text-white px-6 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(0,174,239,0.4)] transition-all">Secure Seat</a>
-    </nav>
+
+        <a href="#tickets" class="bg-sky-premium text-white px-8 py-3 rounded-full font-extrabold text-[11px] uppercase tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,174,239,0.3)]">
+            Secure Access
+        </a>
+        </nav>
+    
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <video autoPlay loop muted playsInline class="absolute inset-0 w-full h-full object-cover opacity-30 dark:opacity-20">
