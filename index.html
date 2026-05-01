@@ -96,6 +96,42 @@
                         </div>
                     </section>
 
+                    {/* Small Window Video Section */}
+<section className={`py-20 border-t transition-colors duration-500 ${darkMode ? 'bg-black border-white/10' : 'bg-white border-black/5'}`}>
+    <div className="max-w-4xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+            
+            {/* The Video Window */}
+            <div className="w-full md:w-1/2 aspect-video bg-neutral-900 shadow-2xl relative group overflow-hidden border border-white/10">
+                <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                >
+                    <source src="ad3.mp4" type="video/mp4" />
+                </video>
+                {/* Decorative Accent */}
+                <div className="absolute top-4 left-4 bg-yellow-500 text-black text-[8px] font-black px-2 py-1 uppercase tracking-widest">
+                    Live Preview
+                </div>
+            </div>
+
+            {/* Accompanying Text */}
+            <div className="w-full md:w-1/2 text-center md:text-left">
+                <h3 className="text-2xl font-black uppercase italic tracking-tighter mb-4">
+                    Tournament <span className="text-yellow-600">Broadcast</span>
+                </h3>
+                <p className={`text-xs uppercase tracking-widest leading-relaxed opacity-60 font-bold`}>
+                    Experience every moment in high-definition. Our global broadcast network ensures the Upper Tier experience reaches every corner of the globe.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+                    
                     {/* Tickets */}
                     <section id="tickets" className={`py-32 border-y px-6 ${darkMode ? 'bg-neutral-950 border-white/5' : 'bg-neutral-100 border-black/5'}`}>
                         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
