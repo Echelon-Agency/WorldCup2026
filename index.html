@@ -3,126 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorldCup 2026 | Official Platform</title>
+    <title>WorldCup 2026 | The Global Stage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
-        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease; }
-        .gold-clip { background: linear-gradient(to right, #ca8a04, #000, #ca8a04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .dark-mode .gold-clip { background: linear-gradient(to right, #eab308, #fff, #ca8a04); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.light-mode { background-color: #F4F4F4; color: #000; }
-        body.dark-mode { background-color: #000; color: #fff; }
-        .hidden { display: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            transition: all 0.5s ease; 
+            background-color: #ffffff; 
+            color: #001f3f; /* Deep Navy Blue */
+        }
+        .text-blue-elite { color: #003366; }
+        .bg-blue-elite { background-color: #003366; }
+        
+        /* Dark Mode Overrides (Deep Blue/Black Theme) */
+        body.dark-mode { background-color: #000814; color: #ffffff; }
+        .dark-mode .text-blue-elite { color: #00a8ff; }
+        
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 51, 102, 0.8), rgba(255, 255, 255, 0));
+        }
+        .dark-mode .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 8, 20, 0.9), rgba(0, 0, 0, 0));
+        }
     </style>
 </head>
 <body class="light-mode overflow-x-hidden">
 
-    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-[100] p-4 rounded-full shadow-2xl bg-black text-white dark:bg-white dark:text-black border border-current transition-all" id="theme-toggle">
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-[100] p-4 rounded-full shadow-2xl bg-[#003366] text-white transition-all transform hover:scale-110" id="theme-toggle">
         <i data-lucide="moon" id="toggle-icon"></i>
     </button>
 
-    <nav class="fixed w-full z-50 py-4 px-6 flex justify-between items-center bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-black/5 dark:border-white/10 transition-all">
+    <nav class="fixed w-full z-50 py-5 px-8 flex justify-between items-center bg-white/90 dark:bg-black/90 backdrop-blur-xl border-b border-blue-900/10 transition-all">
         <div class="flex items-center space-x-2">
-            <i data-lucide="trophy" class="text-yellow-600"></i>
-            <span class="font-black uppercase italic tracking-tighter text-lg">WorldCup<span class="text-yellow-600">2026</span></span>
+            <i data-lucide="trophy" class="text-blue-600 w-6 h-6"></i>
+            <span class="font-black uppercase italic tracking-tighter text-2xl">WorldCup<span class="text-blue-600">2026</span></span>
         </div>
-        <a href="#tickets" class="bg-black dark:bg-yellow-500 text-white dark:text-black px-6 py-2 text-[10px] font-black uppercase tracking-widest transition-all">Buy Tickets</a>
+        <a href="#tickets" class="bg-blue-elite text-white px-8 py-3 text-xs font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg">Secure Access</a>
     </nav>
 
-    <header class="relative h-screen flex items-center justify-center overflow-hidden bg-neutral-900">
-        <video id="hero-video" autoPlay loop muted playsInline class="absolute inset-0 w-full h-full object-cover opacity-20 transition-opacity duration-1000">
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <video id="hero-video" autoPlay loop muted playsInline class="absolute inset-0 w-full h-full object-cover grayscale-[50%] opacity-40">
             <source src="ad2.mp4" type="video/mp4">
         </video>
-        <div class="relative z-10 text-center px-6">
-            <h1 class="text-6xl md:text-[10rem] font-black italic gold-clip uppercase tracking-tighter leading-none">Live The <br/> Dream</h1>
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-6xl">
+            <h1 class="text-7xl md:text-[11rem] font-black italic uppercase tracking-tighter leading-[0.8] mb-8 text-blue-elite drop-shadow-2xl">
+                The Zenith <br/> Of Football
+            </h1>
+            <p class="text-xl md:text-3xl font-bold uppercase tracking-wide mb-10 max-w-4xl mx-auto leading-relaxed">
+                Behold the most prestigious sporting event in human history. 3 Nations, 16 Host Cities, and the world's elite icons colliding for eternal glory.
+            </p>
+            
+            <div class="grid grid-cols-4 gap-4 md:gap-10 max-w-3xl mx-auto mb-12">
+                <div class="bg-white/10 backdrop-blur-md p-4 border border-white/20">
+                    <div id="days" class="text-3xl md:text-5xl font-black italic">00</div>
+                    <div class="text-[10px] uppercase font-bold tracking-widest opacity-70">Days</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 border border-white/20">
+                    <div id="hours" class="text-3xl md:text-5xl font-black italic">00</div>
+                    <div class="text-[10px] uppercase font-bold tracking-widest opacity-70">Hours</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 border border-white/20">
+                    <div id="mins" class="text-3xl md:text-5xl font-black italic">00</div>
+                    <div class="text-[10px] uppercase font-bold tracking-widest opacity-70">Mins</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-4 border border-white/20">
+                    <div id="secs" class="text-3xl md:text-5xl font-black italic">00</div>
+                    <div class="text-[10px] uppercase font-bold tracking-widest opacity-70">Secs</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="#tickets" class="bg-blue-elite text-white px-12 py-5 font-black uppercase tracking-widest hover:scale-105 transition-all text-sm shadow-[0_20px_50px_rgba(0,51,102,0.3)]">Buy Tickets Now</a>
+            </div>
         </div>
     </header>
 
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="messi.jpg" class="aspect-[3/4] object-cover grayscale hover:grayscale-0 border border-black/5 transition-all" alt="Messi">
-            <img src="ronaldo.jpg" class="aspect-[3/4] object-cover grayscale hover:grayscale-0 border border-black/5 transition-all" alt="Ronaldo">
-            <img src="haaland.jpg" class="aspect-[3/4] object-cover grayscale hover:grayscale-0 border border-black/5 transition-all" alt="Haaland">
-            <img src="mbappe.jpg" class="aspect-[3/4] object-cover grayscale hover:grayscale-0 border border-black/5 transition-all" alt="Mbappe">
-            <img src="kvara.jpg" class="aspect-[3/4] object-cover grayscale hover:grayscale-0 border border-black/5 transition-all" alt="Kvaratshelia">
-        </div>
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-16 border-l-8 border-blue-600 pl-6">The Global Icons</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="group relative overflow-hidden aspect-[3/4] shadow-2xl bg-gray-200">
+                <img src="messi.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Messi">
+                <div class="absolute bottom-0 p-6 bg-gradient-to-t from-blue-900 w-full text-white">
+                    <span class="text-xl font-black uppercase">L.Messi</span>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden aspect-[3/4] shadow-2xl bg-gray-200">
+                <img src="ronaldo.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Ronaldo">
+                <div class="absolute bottom-0 p-6 bg-gradient-to-t from-blue-900 w-full text-white">
+                    <span class="text-xl font-black uppercase">C.Ronaldo</span>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden aspect-[3/4] shadow-2xl bg-gray-200">
+                <img src="haaland.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Haaland">
+                <div class="absolute bottom-0 p-6 bg-gradient-to-t from-blue-900 w-full text-white">
+                    <span class="text-xl font-black uppercase">E.Haaland</span>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden aspect-[3/4] shadow-2xl bg-gray-200">
+                <img src="mbappe.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Mbappe">
+                <div class="absolute bottom-0 p-6 bg-gradient-to-t from-blue-900 w-full text-white">
+                    <span class="text-xl font-black uppercase">K.Mbappé</span>
+                </div>
+            </div>
+        </div> class="group relative overflow-hidden aspect-[3/4] shadow-2xl bg-gray-200">
+                <img src="kvara.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Kvara">
+                <div class="absolute bottom-0 p-6 bg-gradient-to-t from-blue-900 w-full text-white">
+                    <span class="text-xl font-black uppercase">K.Kvaratshelia</span>
+                </div>
+            </div>
+    </div>
     </section>
 
-    <section id="tickets" class="py-32 border-y px-6 bg-neutral-100 dark:bg-neutral-950 border-black/5 dark:border-white/5 transition-all">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
+    <section id="tickets" class="py-32 border-y bg-neutral-50 dark:bg-neutral-950 border-blue-900/10 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="space-y-8">
-                <h2 class="text-5xl font-black uppercase italic tracking-tighter">Official <span class="text-yellow-600">Ticketing</span></h2>
-                <div class="p-8 border bg-white dark:bg-black border-black/5 dark:border-white/10 shadow-xl">
-                    <div class="text-6xl font-black italic tracking-tighter mb-2" id="available-counter">25,158</div>
-                    <div class="text-[10px] uppercase font-black text-yellow-600 tracking-widest">Available Passes Remaining</div>
+                <h2 class="text-6xl font-black uppercase italic tracking-tighter text-blue-elite">Official Allocation</h2>
+                <p class="text-lg font-bold opacity-80 uppercase tracking-widest">Real-time inventory lock enabled.</p>
+                <div class="p-10 border-4 border-blue-900 bg-white dark:bg-black shadow-2xl">
+                    <div class="text-8xl font-black italic tracking-tighter text-blue-600 mb-2" id="available-counter">25,158</div>
+                    <div class="text-sm uppercase font-black tracking-[0.3em]">Passes Available Globally</div>
                 </div>
             </div>
 
-            <div class="p-8 border bg-white dark:bg-neutral-900 border-black/5 dark:border-white/10 shadow-2xl">
-                <div id="purchase-form" class="space-y-6">
-                    <div class="flex justify-between items-center bg-neutral-500/10 p-4">
-                        <span class="text-xs font-black uppercase tracking-widest opacity-60">Selection Qty: <span id="qty-display">1</span></span>
-                        <div class="flex gap-2">
-                            <button onclick="changeQty(-1)" class="p-2 border border-black/10 hover:bg-black hover:text-white transition-all"><i data-lucide="minus" class="w-4 h-4"></i></button>
-                            <button onclick="changeQty(1)" class="p-2 border border-black/10 hover:bg-black hover:text-white transition-all"><i data-lucide="plus" class="w-4 h-4"></i></button>
+            <div class="p-10 border bg-white dark:bg-neutral-900 border-blue-900/20 shadow-2xl">
+                <div id="purchase-form" class="space-y-8">
+                    <div class="flex justify-between items-center border-b-2 border-blue-900 pb-6">
+                        <span class="text-lg font-black uppercase tracking-widest">Quantity: <span id="qty-display" class="text-blue-600">1</span></span>
+                        <div class="flex gap-4">
+                            <button onclick="changeQty(-1)" class="w-12 h-12 bg-blue-900 text-white flex items-center justify-center hover:bg-blue-600 transition-all"><i data-lucide="minus"></i></button>
+                            <button onclick="changeQty(1)" class="w-12 h-12 bg-blue-900 text-white flex items-center justify-center hover:bg-blue-600 transition-all"><i data-lucide="plus"></i></button>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-2 text-yellow-600">
-                        <i data-lucide="bitcoin"></i>
-                        <div class="text-3xl font-black italic"><span id="btc-price">0.015</span> BTC</div>
+                    <div class="flex items-center space-x-4 text-blue-elite">
+                        <i data-lucide="bitcoin" class="w-10 h-10"></i>
+                        <div class="text-5xl font-black italic"><span id="btc-price">0.015</span> BTC</div>
                     </div>
-                    <button onclick="handlePurchase()" class="w-full bg-black dark:bg-yellow-500 text-white dark:text-black py-4 font-black uppercase tracking-widest hover:opacity-80 transition-all" id="buy-btn">Purchase with Bitcoin</button>
+                    <button onclick="handlePurchase()" class="w-full bg-blue-elite text-white py-6 text-lg font-black uppercase tracking-widest hover:bg-blue-500 transition-all">Generate Bitcoin Invoice</button>
                 </div>
 
-                <div id="payment-state" class="hidden text-center py-6">
-                    <div class="mb-6 aspect-video bg-black relative border border-yellow-500/30 overflow-hidden">
-                        <video autoPlay loop muted playsInline class="absolute inset-0 w-full h-full object-cover opacity-50">
-                            <source src="ad3.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-white">Awaiting Verification...</span>
-                        </div>
-                    </div>
-                    <i data-lucide="check-circle-2" class="mx-auto text-yellow-600 mb-4 w-12 h-12"></i>
-                    <div class="text-[9px] opacity-50 mb-2 uppercase font-black">Official Deposit Address</div>
-                    <div class="bg-black p-3 text-[9px] text-yellow-500 break-all mb-4 font-mono">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
-                    <button onclick="resetPurchase()" class="text-[10px] underline uppercase font-black opacity-40">Cancel Invoice</button>
+                <div id="payment-state" class="hidden text-center space-y-6">
+                    <video autoPlay loop muted playsInline class="w-full aspect-video object-cover border-4 border-blue-600">
+                        <source src="ad3.mp4" type="video/mp4">
+                    </video>
+                    <div class="text-sm font-black uppercase bg-blue-900 text-white py-2 tracking-widest">Deposit Required for Verification</div>
+                    <div class="bg-neutral-100 dark:bg-black p-5 text-sm text-blue-600 break-all font-mono border-2 border-blue-600">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
+                    <button onclick="resetPurchase()" class="text-xs underline uppercase font-black opacity-60">Cancel Payment</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-24 text-center px-6">
-        <h3 class="text-[10px] font-black uppercase tracking-[0.4em] mb-16 opacity-40">Global Partners</h3>
-        <div class="flex flex-wrap justify-center items-center gap-12 max-w-7xl mx-auto">
-            <img src="adidas.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="coke.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="visa.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="qatar.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="lenovo.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="hyundai.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="aramco.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
-            <img src="mcdonalds.png" class="h-10 grayscale hover:grayscale-0 opacity-70 dark:invert transition-all">
+    <section class="py-32 bg-white dark:bg-neutral-900 transition-all px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h3 class="text-xs font-black uppercase tracking-[0.5em] mb-20 opacity-60">Official Global Partners</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-16">
+                <img src="adidas.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="coke.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="visa.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="qatar.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="lenovo.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="hyundai.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="aramco.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+                <img src="mcdonalds.png" class="h-12 mx-auto grayscale hover:grayscale-0 transition-all">
+            </div>
         </div>
     </section>
 
-    <footer class="py-24 text-center px-6 border-t border-black/5 dark:border-white/10">
-        <div class="inline-flex p-6 rounded-full mb-10 bg-black text-white dark:bg-yellow-500 dark:text-black transition-all">
-            <i data-lucide="headphones" class="w-8 h-8"></i>
+    <footer class="py-24 text-center px-6 bg-blue-elite text-white">
+        <i data-lucide="headphones" class="w-12 h-12 mx-auto mb-8"></i>
+        <div class="flex flex-col md:flex-row justify-center gap-12 text-xs font-black tracking-widest uppercase mb-12">
+            <a href="mailto:worldcupsponsorship2026@gmail.com">Global Support</a>
+            <a href="mailto:fifaworldcupsponsorship@gmail.com">Logistics Hub</a>
         </div>
-        <div class="flex flex-col md:flex-row justify-center gap-12 text-[10px] font-black tracking-widest uppercase mb-12 opacity-50">
-            <a href="mailto:worldcupsponsorship2026@gmail.com">General Inquiries</a>
-            <a href="mailto:fifaworldcupsponsorship@gmail.com">Tournament Logistics</a>
-        </div>
-        <div class="text-[8px] font-bold opacity-20 tracking-[0.8em] uppercase">© 2026 WORLDCUP2026. OFFICIAL PLATFORM.</div>
+        <p class="text-[10px] opacity-40 tracking-[0.5em]">© 2026 WORLDCUP2026. PLATINUM ACCESS.</p>
     </footer>
 
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // 3. Theme Toggle Logic
+        // Theme Toggle
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('toggle-icon');
@@ -136,39 +199,50 @@
             lucide.createIcons();
         }
 
-        // 5. Ticketing Logic
-        let qty = 1;
-        let ticketsAvailable = 25158;
+        // 4. Countdown Timer
+        function updateCountdown() {
+            const target = new Date("June 11, 2026 00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
 
-        function changeQty(val) {
-            qty = Math.max(1, qty + val);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d;
+            document.getElementById("hours").innerText = h;
+            document.getElementById("mins").innerText = m;
+            document.getElementById("secs").innerText = s;
+        }
+        setInterval(updateCountdown, 1000);
+
+        // Tickets Logic
+        let qty = 1;
+        let available = 25158;
+
+        function changeQty(v) {
+            qty = Math.max(1, qty + v);
             document.getElementById('qty-display').innerText = qty;
             document.getElementById('btc-price').innerText = (qty * 0.015).toFixed(3);
         }
 
-        // Simulate real-time sales
-        setInterval(() => {
-            if (Math.random() > 0.8) {
-                ticketsAvailable--;
-                document.getElementById('available-counter').innerText = ticketsAvailable.toLocaleString();
-            }
-        }, 3000);
-
-        // 6. BTC Payment Interaction
         function handlePurchase() {
-            const btn = document.getElementById('buy-btn');
-            btn.innerText = "Generating Invoice...";
-            setTimeout(() => {
-                document.getElementById('purchase-form').classList.add('hidden');
-                document.getElementById('payment-state').classList.remove('hidden');
-            }, 1500);
+            document.getElementById('purchase-form').classList.add('hidden');
+            document.getElementById('payment-state').classList.remove('hidden');
         }
 
         function resetPurchase() {
             document.getElementById('purchase-form').classList.remove('hidden');
             document.getElementById('payment-state').classList.add('hidden');
-            document.getElementById('buy-btn').innerText = "Purchase with Bitcoin";
         }
+
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                available--;
+                document.getElementById('available-counter').innerText = available.toLocaleString();
+            }
+        }, 3000);
     </script>
 </body>
 </html>
