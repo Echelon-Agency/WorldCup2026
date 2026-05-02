@@ -33,7 +33,24 @@
         .dark-mode .text-navy-fix { color: #FFFFFF; }
         
         .hero-overlay { background: rgba(0, 11, 24, 0.3); } /* Pushes video to 70% brightness */
+.player-name-container {
+    position: absolute;
+    bottom: 40px; /* This pushes the name up away from the bottom edge */
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
 
+.player-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-style: italic;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+        
         .player-card:hover .player-name { transform: translateY(0); opacity: 1; }
         .player-name { transform: translateY(10px); opacity: 0; transition: all 0.3s ease; }
     </style>
@@ -207,14 +224,18 @@
                     </div>
                 </div>
             </div>
-            <div class="player-card relative aspect-[3/4] overflow-hidden rounded-2xl shadow-xl bg-sky-50">
-                <img src="kvara.jpg" class="w-full h-full object-cover" alt="Kvaratskhelia">
-                <div class="absolute inset-0 bg-gradient-to-t from-sky-900/90 via-transparent to-transparent flex items-end p-6">
-                    <div class="player-name w-full text-center">
-                        <p class="text-white font-black uppercase italic tracking-widest text-lg text-[14px]">K. Kvaratskhelia</p>
-                        <p class="text-sky-300 text-[10px] font-bold uppercase tracking-widest">Georgia</p>
-                    </div>
-                </div>
+            <div class="relative group rounded-3xl overflow-hidden ...">
+    <img src="kvara.jpg" class="...">
+    
+    <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
+        <h3 class="text-xl font-black italic uppercase tracking-tighter text-white">
+            KVARATSKHELIA
+        </h3>
+        <p class="text-[10px] font-bold text-sky-400 tracking-[0.3em] uppercase">
+            GEORGIA
+        </p>
+    </div>
+            </div>
             </div>
         </div>
     </section>
