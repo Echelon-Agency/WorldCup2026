@@ -71,8 +71,8 @@
         </nav>
     
             <header class="relative min-h-screen flex flex-col items-center overflow-hidden bg-[#000B18]">
-    <video autoPlay loop muted playsInline class="absolute inset-0 w-full h-full object-cover opacity-25">
-        <source src="ad2.mp4" type="video/mp4">
+    <video autoPlay loop muted playsInline class="w-full max-w-4xl mx-auto rounded-2xl shadow-2xl object-contain">
+    <source src="ad2.mp4" type="video/mp4">
     </video>
     
     <div class="absolute inset-0 bg-gradient-to-b from-[#000B18]/80 via-transparent to-[#000B18]"></div>
@@ -266,52 +266,84 @@
 
         <!-- Payment Flow -->
         <div class="max-w-2xl mx-auto bg-white/5 rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl">
-            <div id="payment-choice">
-                <h4 class="text-sm font-black uppercase tracking-[0.3em] mb-8 text-center text-sky-400">Select Payment Method</h4>
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <button onclick="showPayment('btc')" class="p-6 rounded-2xl border border-white/10 hover:border-yellow-500 bg-black/40 flex flex-col items-center gap-3 transition-all">
-                        <i data-lucide="bitcoin" class="text-yellow-500 w-8 h-8"></i>
-                        <span class="text-[10px] font-black uppercase">Bitcoin (BTC)</span>
-                    </button>
-                    <button onclick="showPayment('minipay')" class="p-6 rounded-2xl border border-white/10 hover:border-sky-500 bg-black/40 flex flex-col items-center gap-3 transition-all">
-                        <i data-lucide="smartphone" class="text-sky-400 w-8 h-8"></i>
-                        <span class="text-[10px] font-black uppercase">Minipay</span>
-                    </button>
-                </div>
-                <p class="text-[10px] text-center opacity-40 uppercase font-bold">
-                    Need another method? <a href="https://wa.me/17579579445" class="text-sky-400 underline">Request Local Payment Method</a>
-                </p>
-            </div>
+        <div class="max-w-2xl mx-auto bg-white/5 rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl backdrop-blur-xl">
+    
+    <div id="payment-choice">
+        <h4 class="text-sm font-black uppercase tracking-[0.3em] mb-8 text-center text-sky-400">Select Payment Method</h4>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <button onclick="showPayment('btc')" class="p-6 rounded-2xl border border-white/10 hover:border-yellow-500 bg-black/40 flex flex-col items-center gap-3 transition-all">
+                <i data-lucide="bitcoin" class="text-yellow-500 w-8 h-8"></i>
+                <span class="text-[10px] font-black uppercase">Bitcoin (BTC)</span>
+            </button>
+            <button onclick="showPayment('minipay')" class="p-6 rounded-2xl border border-white/10 hover:border-sky-500 bg-black/40 flex flex-col items-center gap-3 transition-all">
+                <i data-lucide="smartphone" class="text-sky-400 w-8 h-8"></i>
+                <span class="text-[10px] font-black uppercase">Minipay</span>
+            </button>
+        </div>
+        <p class="text-[10px] text-center opacity-40 uppercase font-bold">
+            Need another method? <a href="https://wa.me/17579579445" class="text-sky-400 underline">Request Local Payment Method</a>
+        </p>
+    </div>
 
-            <!-- BTC View -->
-            <div id="pay-btc" class="hidden text-center space-y-6">
-                <div class="text-yellow-500 font-black uppercase text-xs">BTC Invoice Generated</div>
-                <div class="bg-black p-4 rounded-xl font-mono text-[11px] text-yellow-500 break-all border border-yellow-500/30">
-                    bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-                </div>
-                <p class="text-[10px] opacity-60 uppercase">Send exactly <span id="btc-val">0.015</span> BTC to the address above.</p>
-                <button onclick="resetPayment()" class="text-[10px] font-black uppercase opacity-40 underline">Back</button>
-            </div>
-
-            <!-- Minipay View -->
-            <div id="pay-minipay" class="hidden text-center space-y-6">
-                <div class="text-sky-400 font-black uppercase text-xs">Minipay Transfer</div>
-                <!-- QR Code Box -->
-                <div class="w-48 h-48 bg-white mx-auto p-2 rounded-xl">
-                    <!-- INSTRUCTION: Replace 'minipay-qr.png' with your actual QR code image -->
-                    <img src="minipay-qr.png" alt="Scan to Pay" class="w-full h-full object-contain" onError="this.src='https://via.placeholder.com/200?text=SCAN+QR'">
-                </div>
-                <p class="text-[10px] opacity-60 uppercase">Scan QR above or use Account Number:</p>
-                <div class="bg-sky-400/10 text-sky-400 p-3 rounded-lg font-black text-lg tracking-widest border border-sky-400/20">
-                    +1 757 957 9445
-                </div>
-                <button onclick="resetPayment()" class="text-[10px] font-black uppercase opacity-40 underline">Back</button>
+    <div id="verification-room" class="hidden space-y-8">
+        
+        <div class="text-center">
+            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 mb-4">
+                <span class="w-2 h-2 bg-yellow-500 rounded-full animate-ping"></span>
+                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-yellow-500">Awaiting Network Verification</span>
             </div>
         </div>
+
+        <div class="relative w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+            <video autoPlay loop muted playsInline class="w-full h-auto object-contain aspect-video">
+                <source src="ad3.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="pay-btc" class="hidden text-center space-y-6">
+            <div class="text-yellow-500 font-black uppercase text-xs">BTC Invoice Generated</div>
+            <div class="bg-black p-4 rounded-xl font-mono text-[11px] text-yellow-500 break-all border border-yellow-500/30">
+                bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+            </div>
+            <p class="text-[10px] opacity-60 uppercase text-white">Send exactly <span id="btc-val" class="text-yellow-500">0.015</span> BTC to the address above.</p>
+        </div>
+
+        <div id="pay-minipay" class="hidden text-center space-y-6">
+            <div class="text-sky-400 font-black uppercase text-xs">Minipay Transfer Details</div>
+            <div class="w-40 h-40 bg-white mx-auto p-2 rounded-xl">
+                <img src="minipay-qr.png" alt="Scan to Pay" class="w-full h-full object-contain" onError="this.src='https://via.placeholder.com/200?text=SCAN+QR'">
+            </div>
+            <div class="bg-sky-400/10 text-sky-400 p-3 rounded-lg font-black text-lg tracking-widest border border-sky-400/20">
+                +1 757 957 9445
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button onclick="resetPayment()" class="text-[10px] font-black uppercase opacity-30 hover:opacity-100 transition-all underline">Cancel & Back to selection</button>
+        </div>
     </div>
-</section>
+</div>
 
 <script>
+    function showPayment(method) {
+        // Hide selection, show the video/verification room
+        document.getElementById('payment-choice').classList.add('hidden');
+        document.getElementById('verification-room').classList.remove('hidden');
+        
+        // Hide both sub-views first
+        document.getElementById('pay-btc').classList.add('hidden');
+        document.getElementById('pay-minipay').classList.add('hidden');
+        
+        // Show the selected one
+        document.getElementById('pay-' + method).classList.remove('hidden');
+    }
+
+    function resetPayment() {
+        document.getElementById('verification-room').classList.add('hidden');
+        document.getElementById('payment-choice').classList.remove('hidden');
+    }
+    
+</script>
     let selectedPrice = 1550;
 
     function selectTier(id, price) {
