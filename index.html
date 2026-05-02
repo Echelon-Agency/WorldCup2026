@@ -223,46 +223,57 @@
 
     <section id="tickets" class="py-32 bg-[#000B18] px-6 border-t border-white/5">
     <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-tighter text-white">Raffle <span class="text-yellow-500">Tier Selection</span></h2>
-            <p class="text-sky-400 font-bold uppercase tracking-widest text-xs mt-4">Select your entry category below</p>
+        
+        <div class="flex justify-center mb-16">
+            <div class="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl backdrop-blur-md">
+                <p class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-1">Live Entry Availability</p>
+                <div class="flex items-center gap-4">
+                    <div class="h-2 w-48 bg-gray-800 rounded-full overflow-hidden">
+                        <div id="inventory-bar" class="h-full bg-yellow-500 transition-all duration-1000" style="width: 84%"></div>
+                    </div>
+                    <span class="text-yellow-500 font-mono font-black text-sm"><span id="tickets-left">842</span> / 1000</span>
+                </div>
+                <p class="text-[9px] italic opacity-40 mt-2 text-white">*Entries are processed in real-time. Secure yours before the draw closes.</p>
+            </div>
         </div>
 
         <div class="grid lg:grid-cols-3 gap-8 mb-16">
-            <!-- Regular Tier -->
-            <div onclick="selectTier('Regular', 1050)" id="tier-Regular" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-white/5 bg-white/5 hover:border-sky-500 transition-all text-center">
+            <div onclick="selectTier('Regular', 1050)" id="tier-Regular" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-sky-500 bg-sky-500/5 transition-all text-center">
                 <h3 class="text-xl font-black uppercase mb-2">Regular</h3>
-                <p class="text-xs opacity-50 mb-6 uppercase tracking-widest">Single Applicant</p>
                 <div class="text-4xl font-black text-yellow-500 mb-6">$1,050</div>
-                <ul class="text-[11px] uppercase font-bold space-y-3 opacity-70">
-                    <li>1x Raffle Entry</li>
-                    <li>Digital Certificate</li>
-                </ul>
             </div>
 
-            <!-- Couple Tier -->
-            <div onclick="selectTier('Couple', 1550)" id="tier-Couple" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-sky-500 bg-sky-500/5 transition-all text-center relative overflow-hidden">
-                <div class="bg-sky-500 text-white text-[9px] font-black py-1 px-4 absolute top-4 -right-8 rotate-45 w-32 uppercase">Popular</div>
+            <div onclick="selectTier('Couple', 1550)" id="tier-Couple" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-white/5 bg-white/5 transition-all text-center">
                 <h3 class="text-xl font-black uppercase mb-2">Couple</h3>
-                <p class="text-xs opacity-50 mb-6 uppercase tracking-widest">Two Applicants</p>
                 <div class="text-4xl font-black text-yellow-500 mb-6">$1,550</div>
-                <ul class="text-[11px] uppercase font-bold space-y-3 opacity-70">
-                    <li>2x Raffle Entry</li>
-                    <li>Priority Verification</li>
-                </ul>
             </div>
 
-            <!-- Family Tier -->
-            <div onclick="selectTier('Family', 2050)" id="tier-Family" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-white/5 bg-white/5 hover:border-yellow-500 transition-all text-center">
+            <div onclick="selectTier('Family', 2050)" id="tier-Family" class="tier-card cursor-pointer p-8 rounded-3xl border-2 border-white/5 bg-white/5 transition-all text-center">
                 <h3 class="text-xl font-black uppercase mb-2">Couple + Children</h3>
-                <p class="text-xs opacity-50 mb-6 uppercase tracking-widest">Full Family Pack</p>
                 <div class="text-4xl font-black text-yellow-500 mb-6">$2,050</div>
-                <ul class="text-[11px] uppercase font-bold space-y-3 opacity-70">
-                    <li>4x Raffle Entry</li>
-                    <li>VIP Concierge Support</li>
-                </ul>
             </div>
         </div>
+
+        <div class="max-w-md mx-auto mb-16 bg-white/5 p-8 rounded-[2rem] border border-white/10 text-center">
+            <label class="block text-[10px] font-black uppercase tracking-widest opacity-60 mb-6">Select Number of Tickets</label>
+            <div class="flex items-center justify-center gap-6">
+                <button onclick="updateQty(-1)" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all text-2xl font-light text-white">-</button>
+                
+                <input type="number" id="ticket-qty" value="1" min="1" max="10" oninput="validateQty()"
+                    class="bg-transparent text-4xl font-black text-center w-20 outline-none text-white focus:text-sky-400 transition-colors">
+                
+                <button onclick="updateQty(1)" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all text-2xl font-light text-white">+</button>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/5">
+                <p class="text-[10px] uppercase font-bold opacity-40 mb-2">Total Estimated Value</p>
+                <div class="text-3xl font-black text-white">$<span id="total-price">1050</span></div>
+            </div>
+        </div>
+
+        </div>
+    </section>
+    
 
         <!-- Payment Flow -->
         <div class="max-w-2xl mx-auto bg-white/5 rounded-[2.5rem] p-8 md:p-12 border border-white/10 shadow-2xl">
@@ -344,38 +355,71 @@
     }
     
 </script>
-    let selectedPrice = 1550;
+    <script>
+    let basePrice = 1050; // Default Regular price
+    let currentQty = 1;
+    let totalTickets = 1000;
+    let availableTickets = 842;
 
+    // 1. Update Inventory Algorithm (Simulates live sales)
+    function simulateSales() {
+        if (availableTickets > 5) {
+            const sold = Math.floor(Math.random() * 2); // Randomly drop by 0 or 1
+            availableTickets -= sold;
+            document.getElementById('tickets-left').innerText = availableTickets;
+            const percentage = (availableTickets / totalTickets) * 100;
+            document.getElementById('inventory-bar').style.width = percentage + '%';
+        }
+    }
+    setInterval(simulateSales, 5000); // Check every 5 seconds
+
+    // 2. Select Tier
     function selectTier(id, price) {
-        selectedPrice = price;
-        // Reset colors
+        basePrice = price;
         document.querySelectorAll('.tier-card').forEach(el => {
             el.classList.remove('border-sky-500', 'bg-sky-500/5', 'border-yellow-500', 'bg-yellow-500/5');
             el.classList.add('border-white/5', 'bg-white/5');
         });
-        // Highlight selected
         const card = document.getElementById('tier-' + id);
         card.classList.remove('border-white/5', 'bg-white/5');
-        const colorClass = id === 'Family' ? 'border-yellow-500' : 'border-sky-500';
-        const bgClass = id === 'Family' ? 'bg-yellow-500/5' : 'bg-sky-500/5';
-        card.classList.add(colorClass, bgClass);
+        card.classList.add(id === 'Family' ? 'border-yellow-500' : 'border-sky-500', id === 'Family' ? 'bg-yellow-500/5' : 'bg-sky-500/5');
+        calculateTotal();
     }
 
-    function showPayment(method) {
-        document.getElementById('payment-choice').classList.add('hidden');
-        document.getElementById('pay-' + method).classList.remove('hidden');
-        if(method === 'btc') {
-            // Simulated BTC conversion
-            document.getElementById('btc-val').innerText = (selectedPrice / 65000).toFixed(5);
+    // 3. Update Quantity (Toggle buttons)
+    function updateQty(change) {
+        let input = document.getElementById('ticket-qty');
+        let newQty = parseInt(input.value) + change;
+        if (newQty >= 1 && newQty <= 10) {
+            input.value = newQty;
+            currentQty = newQty;
+            calculateTotal();
         }
     }
 
-    function resetPayment() {
-        document.getElementById('pay-btc').classList.add('hidden');
-        document.getElementById('pay-minipay').classList.add('hidden');
-        document.getElementById('payment-choice').classList.remove('hidden');
+    // 4. Validate Quantity (Direct text input)
+    function validateQty() {
+        let input = document.getElementById('ticket-qty');
+        let val = parseInt(input.value);
+        if (isNaN(val) || val < 1) val = 1;
+        if (val > 10) val = 10; // Limit per transaction for security
+        input.value = val;
+        currentQty = val;
+        calculateTotal();
     }
-            </script>
+
+    // 5. Final Calculation
+    function calculateTotal() {
+        const total = basePrice * currentQty;
+        document.getElementById('total-price').innerText = total.toLocaleString();
+        
+        // Update BTC value if you have the payment room open
+        if (document.getElementById('btc-val')) {
+            document.getElementById('btc-val').innerText = (total / 65000).toFixed(5);
+        }
+    }
+    </script>
+            
     
 
     <section class="py-20 bg-black/50 border-t border-white/5 px-6">
