@@ -79,7 +79,8 @@
             <a href="#tickets" class="hover:text-sky-premium transition-colors">Ticketing</a>
             <a href="#footer" class="hover:text-sky-premium transition-colors">Concierge</a>
         </div>
-
+<div id="google_translate_element" class="hidden md:block scale-90 opacity-80 hover:opacity-100 transition-opacity"></div>
+            
         <a href="#tickets" class="bg-sky-premium text-white px-8 py-3 rounded-full font-extrabold text-[11px] uppercase tracking-widest hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,174,239,0.3)]">
             Secure Access
         </a>
@@ -573,5 +574,37 @@
             }
         }, 4000);
     </script>
+            <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style>
+    /* Hides the "Powered by Google" branding for a cleaner look */
+    .goog-logo-link { display: none !important; }
+    .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+    .goog-te-gadget .goog-te-combo { 
+        background: rgba(255,255,255,0.05); 
+        color: white; 
+        border: 1px solid rgba(0,174,239,0.3); 
+        border-radius: 8px; 
+        padding: 4px;
+        font-family: inherit;
+        text-transform: uppercase;
+        font-size: 10px;
+        font-weight: 700;
+        outline: none;
+    }
+    /* Hides the top banner Google adds after translation */
+    body { top: 0 !important; }
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+</style>
+            
 </body>
 </html>
